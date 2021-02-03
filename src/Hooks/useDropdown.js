@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import MultiSelect from 'react-multi-select-component';
 
-const useDropdown = (data, defaultValue) => {
+const useDropdown = (data, defaultValue, flag) => {
     const [selected, setSelected] = useState(defaultValue);
 
     const Dropdown = () => (
@@ -9,7 +9,7 @@ const useDropdown = (data, defaultValue) => {
             options={data}
             value={selected}
             onChange={setSelected}
-            hasSelectAll={false}
+            hasSelectAll={flag}
             labelledBy={"Select"}
         />
     );

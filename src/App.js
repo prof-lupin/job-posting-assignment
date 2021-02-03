@@ -6,9 +6,9 @@ import {locationsList, categoryList, skillsList} from './lib/data';
 
 const App = () => {
 
-  const [selectedSkills, SkillsDropdown, setSelectedSkills] = useDropdown(skillsList, []);
-  const [selectedLocations, LocationsDropdown, setSelectedLocations] = useDropdown(locationsList, []);
-  const [selectedCategories, CategoriesDropdown, setSelectedCategories] = useDropdown(categoryList, []);
+  const [selectedSkills, SkillsDropdown, setSelectedSkills] = useDropdown(skillsList, [], false);
+  const [selectedLocations, LocationsDropdown, setSelectedLocations] = useDropdown(locationsList, [], true);
+  const [selectedCategories, CategoriesDropdown, setSelectedCategories] = useDropdown(categoryList, [], false);
   const [title, setTitle] = useState('');
   const [exp, setExp] = useState('');
   const [skillsArray, setSkillsArray] = useState([]);
