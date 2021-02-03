@@ -16,4 +16,7 @@ You will also see any lint errors in the console.
 
 ## Demo
 
-![demo]()
+![ss1](https://github.com/prof-lupin/job-posting-assignment/blob/master/screenshots/Screenshot%202021-02-03%20at%202.24.37%20PM.png)
+
+
+![ss2](https://github.com/prof-lupin/job-posting-assignment/blob/master/screenshots/Screenshot%202021-02-03%20at%202.34.30%20PM.png)
