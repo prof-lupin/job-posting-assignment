@@ -1,65 +1,65 @@
 export const locationsList = [
     {
-        id: 1,
-        location: "Pune",
+        value: 1,
+        label: "Pune",
     },
     {
-        id: 2,
-        location: "Bangalore",
+        value: 2,
+        label: "Bangalore",
     },
     {
-        id: 3,
-        location: "Mumbai",
+        value: 3,
+        label: "Mumbai",
     },
     {
-        id: 4,
-        location: "Hyderabad",
+        value: 4,
+        label: "Hyderabad",
     },
     {
-        id: 5,
-        location: "Delhi-NCR",
+        value: 5,
+        label: "Delhi-NCR"
     },
 ];
 
 export const categoryList = [
     {
-        id: 1,
-        category: "Software Developor",
+        value: 1,
+        label: "Software Developor",
     },
     {
-        id: 2,
-        category: "Full Stack Developer",
+        value: 2,
+        label: "Full Stack Developer",
     },
     {
-        id: 3,
-        category: "Frontend Developer",
+        value: 3,
+        label: "Frontend Developer",
     },
     {
-        id: 4,
-        category: "Backend Developer",
+        value: 4,
+        label: "Backend Developer",
     },
 ];
 
 export const skillsList = [
     {
-        id: 1,
-        skill: "Java",
+        value: 1,
+        label: "Java",
     },
     {
-        id: 2,
-        skill: "ReactJs",
+        value: 2,
+        label: "ReactJs",
     },
     {
-        id: 3,
-        skill: "NodeJs",
+        value: 3,
+        label: "NodeJs",
     },
     {
-        id: 4,
-        skill: "Python",
+        value: 4,
+        label: "Python",
     },
     {
-        id: 5,
-        skill: "NoSQL",
+        value: 5,
+        label: "NoSQL",
     },
 ];
 
