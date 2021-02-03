@@ -1,55 +1,81 @@
 import React, {useState} from 'react';
-import MultiSelect from 'react-multi-select-component';
+import { postData } from './api/postData';
+import useDropdown from './Hooks/useDropdown';
 
 import {locationsList, categoryList, skillsList} from './lib/data';
 
 const App = () => {
 
-  const [selectedSkills, setSelectedSkills] = useState([]);
-  const [selectedLocations, setSelectedLocations] = useState([]);
-  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [selectedSkills, SkillsDropdown, setSelectedSkills] = useDropdown(skillsList, []);
+  const [selectedLocations, LocationsDropdown, setSelectedLocations] = useDropdown(locationsList, []);
+  const [selectedCategories, CategoriesDropdown, setSelectedCategories] = useDropdown(categoryList, []);
   const [title, setTitle] = useState('');
+  const [exp, setExp] = useState('');
+  const [skillsArray, setSkillsArray] = useState([]);
+  const [categoryArray, setCategoryArray] = useState([]);
+  const [locationsArray, setlocationsArray] = useState([]);
+
+  const joinLabels = (list = []) => {
+    let arr = [];
+    list.forEach((entry) => {
+      arr.push(entry.label);
+    });
+    return arr;
+  }
+
+  const onPostJob = () => {
+    setSkillsArray(joinLabels(selectedSkills));
+    setCategoryArray(joinLabels(selectedCategories));
+    setlocationsArray(joinLabels(selectedLocations));
+
+    setSelectedSkills([]);
+    setSelectedLocations([]);
+    setSelectedCategories([]);
+
+    let Title = title;
+    let YearsOfExperience = exp;
+
+    postData({
+      Title,
+      YearsOfExperience,
+      MustHaveSkills: skillsArray,
+      Locations: locationsArray,
+      Category: categoryArray,
+    }).catch(err => console.error(err));
+
+    setTitle('');
+    setExp('');
+  }
 
   return (
     <div style={{display:'flex', backgroundColor: 'lightgray', height:'100vh', flexDirection:'column'}}>
-      {/* <div style={{display: 'flex', flex:1, backgroundColor:'white', width:'80%', height: '20px', justifyContent:'center'}}> */}
       <div>
         <h4 style={{marginLeft:'7px'}}>Post a Job</h4>
         <hr style={{color:'darkgrey', backgroundColor:'darkgrey', height:2}} />
       </div>
-      <div style={{flexDirection:'column', alignItems:'center', width:'70%', marginLeft:'10px'}}>
+      <div style={{flexDirection:'column', alignItems:'center', width:'45%', marginLeft:'10px'}}>
         <h3>Job Title</h3>
         <input
           style={{height:'31px', width: '99%', borderRadius: '5px', borderColor: 'lightgray', padding:'3px', borderWidth: '1px'}}
           value={title}
           onChange={e => setTitle(e.target.value)}
         />
+        <h3>Experience(in years)</h3>
+        <input
+          style={{height:'31px', width: '20%', borderRadius: '5px', borderColor: 'lightgray', padding:'3px', borderWidth: '1px'}}
+          value={exp}
+          onChange={e => setExp(e.target.value)}
+        />
         <h3>Select Locations</h3>
-        <MultiSelect
-          options={locationsList}
-          value={selectedLocations}
-          onChange={setSelectedLocations}
-          hasSelectAll={false}
-          labelledBy={"Select"}
-        />
+        <LocationsDropdown />
         <h3>Select Categories</h3>
-        <MultiSelect
-          options={categoryList}
-          value={selectedCategories}
-          onChange={setSelectedCategories}
-          hasSelectAll={false}
-          labelledBy={"Select"}
-        />
+        <CategoriesDropdown />
         <h3>Select Skills</h3>
-        <MultiSelect
-          options={skillsList}
-          value={selectedSkills}
-          onChange={setSelectedSkills}
-          hasSelectAll={false}
-          labelledBy={"Select"}
-        />
+        <SkillsDropdown />
       </div>
-      {/* </div> */}
+      <button style={{marginTop:20, marginLeft: 15, width:100, backgroundColor:'cyan', height: 35, borderRadius:7}} onClick={onPostJob}>
+        Post Job
+      </button>
     </div>
   );
 }
